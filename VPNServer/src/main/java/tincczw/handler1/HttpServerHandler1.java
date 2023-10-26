@@ -1,7 +1,8 @@
-package tincczw.handler;
+package tincczw.handler1;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
+
 import io.netty.channel.socket.SocketChannel;
 import io.netty.handler.codec.http.*;
 import org.slf4j.Logger;
@@ -9,7 +10,7 @@ import org.slf4j.LoggerFactory;
 
 import java.net.URL;
 
-public class HttpServerHandler extends ChannelInboundHandlerAdapter {
+public class HttpServerHandler1 extends ChannelInboundHandlerAdapter {
     private String remoteHost ;
     private int remotePort ;
     private boolean isTunnel;
@@ -17,10 +18,10 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
     private boolean hasConnect;
     ChannelFuture remoteConnectFuture;
     private static Logger logger = LoggerFactory.getLogger(HttpServerHandler.class);
-    public HttpServerHandler(){
+    public HttpServerHandler1(){
         super();
     }
-    public HttpServerHandler(String remoteHost, int remotePort){
+    public HttpServerHandler1(String remoteHost, int remotePort){
         super();
         this.remoteHost = remoteHost;
         this.remotePort = remotePort;
@@ -57,6 +58,13 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
 
                 }
             }
+        }else{
+           if(outBoundChannel!=null){
+               outBoundChannel.writeAndFlush(msg);
+           }else{
+               connectRemote(ctx);
+               outBoundChannel.writeAndFlush(msg);
+           }
         }
     }
 

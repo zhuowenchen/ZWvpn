@@ -33,7 +33,7 @@
     <dependency>
       <groupId>io.netty</groupId>
       <artifactId>netty-all</artifactId>
-      <version>4.0.36.Final</version>
+      <version>4.1.32.Final</version>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
@@ -92,4 +92,39 @@
       </plugins>
     </pluginManagement>
   </build>
+  <profiles>
+    <profile>
+      <!-- 正式环境打包 -->
+      <id>prod</id>
+      <build>
+        <finalName>xdtmf</finalName>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <version>3.1.0</version>
+            <configuration>
+              <archive>
+                <manifest>
+                  <mainClass>tincczw/boot/ServerProxy</mainClass>
+                </manifest>
+              </archive>
+              <descriptorRefs>
+                <descriptorRef>jar-with-dependencies</descriptorRef>
+              </descriptorRefs>
+            </configuration>
+            <executions>
+              <execution>
+                <phase>package</phase>
+                <goals>
+                  <goal>single</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+
+      </build>
+    </profile>
+  </profiles>
 </project>
