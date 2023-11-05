@@ -9,6 +9,6 @@ public class Config {
     static {
         username = "";
         password = "";
-        serverPort = 8080;
+        serverPort = 8888;
     }
 }
