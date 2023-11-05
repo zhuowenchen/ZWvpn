@@ -13,8 +13,8 @@ public class Config {
     static {
         username="";
         password="";
-        serverHost="47.243.87.64";
-        serverPort=8080;
-        localServerPort = 7070;
+        serverHost="your server ip";
+        serverPort=8888;
+        localServerPort = 7777;
     }
 }
